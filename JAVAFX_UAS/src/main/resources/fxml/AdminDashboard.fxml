@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.tourism.controller.AdminDashboardController">
+
+    <!-- NAVBAR -->
+    <HBox alignment="CENTER_LEFT" prefHeight="64"
+          style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+        <padding><Insets left="40" right="40"/></padding>
+        <spacing>15</spacing>
+        <Label text="CTRS" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+        <Label text="Admin Dashboard" style="-fx-font-size: 13; -fx-text-fill: #64748b; -fx-padding: 0 0 0 10;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Label fx:id="adminUsernameLabel" text="Admin" style="-fx-font-size: 12; -fx-text-fill: #64748b;"/>
+            <Button text="Back to Home" onAction="#onBackToHome"
+                    style="-fx-padding: 8 16; -fx-background-color: #f8fafc; -fx-border-color: #e5e7eb; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            <Button text="Logout" onAction="#onLogout"
+                    style="-fx-padding: 8 16; -fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+        </HBox>
+    </HBox>
+
+    <!-- TAB PANE -->
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" style="-fx-font-size: 13;">
+
+        <!-- TAB 1: DESTINATIONS -->
+        <Tab text="Destinations">
+            <VBox spacing="15" style="-fx-padding: 20;">
+                <Label text="Manage Destinations" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                <HBox spacing="10">
+                    <Button text="+ Add New Destination" onAction="#onAddDestination"
+                            style="-fx-padding: 10 20; -fx-background-color: #00d4a4; -fx-text-fill: #111827; -fx-font-weight: bold; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+                    <Button text="Refresh" onAction="#onRefreshDestinations"
+                            style="-fx-padding: 10 20; -fx-background-color: #f8fafc; -fx-border-color: #e5e7eb; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+                </HBox>
+                <TableView fx:id="destinationTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="destIdCol" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="destNameCol" text="Name" prefWidth="180"/>
+                        <TableColumn fx:id="destCategoryCol" text="Category" prefWidth="110"/>
+                        <TableColumn fx:id="destLocationCol" text="Location" prefWidth="140"/>
+                        <TableColumn fx:id="destRatingCol" text="Rating" prefWidth="80"/>
+                        <TableColumn fx:id="destReviewsCol" text="Reviews" prefWidth="80"/>
+                        <TableColumn fx:id="destActionCol" text="Actions" prefWidth="220"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No destinations found. Click '+ Add New Destination' to get started." style="-fx-text-fill: #64748b;"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- TAB 3: STATISTICS -->
+        <Tab text="Statistics">
+            <ScrollPane fitToWidth="true" style="-fx-border-width: 0;">
+                <VBox spacing="30" style="-fx-padding: 20;">
+                    <Label text="Dashboard Statistics" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                    <HBox spacing="20">
+                        <VBox alignment="CENTER" spacing="8" prefWidth="200" prefHeight="120"
+                              style="-fx-background-color: white; -fx-border-color: #00d4a4; -fx-border-width: 2; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <Label fx:id="totalDestLabel" text="0" style="-fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: #00d4a4;"/>
+                            <Label text="Total Destinations" style="-fx-font-size: 13; -fx-text-fill: #64748b;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="8" prefWidth="200" prefHeight="120"
+                              style="-fx-background-color: white; -fx-border-color: #111827; -fx-border-width: 2; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <Label fx:id="avgRatingLabel" text="0.0" style="-fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                            <Label text="Avg Rating" style="-fx-font-size: 13; -fx-text-fill: #64748b;"/>
+                        </VBox>
+                    </HBox>
+                    <VBox spacing="12">
+                        <Label text="Top Rated Destinations" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                        <ListView fx:id="topDestinationsList" prefHeight="300"/>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+    </TabPane>
+</VBox>
