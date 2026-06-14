@@ -88,4 +88,4 @@ mvn clean javafx:run
 
 ### 4. Link Presentasi
 
-YouTube: `https://youtu.be/yP_yU29Z9Fg`
+YouTube: https://youtu.be/yP_yU29Z9Fg
